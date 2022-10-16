@@ -30,21 +30,56 @@ import messaging from '@react-native-firebase/messaging';
 PushNotification.configure({
   onRegistrationError: function (err) {
     console.error(err.message, err);
+    console.log('a');
+  },
+
+  onNotification: function (notification) {
+    console.log('Notification:', notification);
+    notification.finish(console.log('finish'));
   },
 
   requestPermissions: true,
 });
 
-PushNotification.createChannel({
-  channelId: 'presentia',
-  channelName: 'Presentia Channel',
-  channelDescription:
-    'Channel untuk menampung notifikasi dari aplikasi Presentia',
-  playSound: false,
-  soundName: 'default',
-  importance: Importance.HIGH,
-  vibrate: true,
-});
+PushNotification.createChannel(
+  {
+    channelId: 'presentia',
+    channelName: 'Presentia Channel for remote',
+    channelDescription:
+      'Channel untuk menampung notifikasi remote dari aplikasi Presentia',
+    playSound: false,
+    soundName: 'default',
+    importance: Importance.HIGH,
+    vibrate: true,
+  },
+  created => console.log(`createChannel presentia returned '${created}`),
+);
+
+PushNotification.createChannel(
+  {
+    channelId: 'presentiax',
+    channelName: 'Presentia Channel',
+    channelDescription:
+      'Channel untuk menampung notifikasi dari aplikasi Presentia',
+    playSound: false,
+    soundName: 'default',
+    importance: Importance.HIGH,
+    vibrate: true,
+  },
+  created => console.log(`createChannel presentiax returned '${created}`),
+);
+
+PushNotification.createChannel(
+  {
+    channelId: 'fcm_fallback_notification_channel',
+    channelName: 'Channel fallback',
+    playSound: false,
+    soundName: 'default',
+    importance: Importance.HIGH,
+    vibrate: true,
+  },
+  created => console.log(`createChannel fcm_fallback returned '${created}`),
+);
 
 auth()
   .signInAnonymously()
@@ -235,7 +270,7 @@ export const Registrasi = ({nav}) => {
 
         if (el.id != new Date().getDay()) {
           PushNotification.localNotificationSchedule({
-            channelId: 'presentia',
+            channelId: 'presentiax',
             invokeApp: true,
             title: el.name[i],
             message: 'Jangan lupa absen, ya!',
@@ -252,7 +287,7 @@ export const Registrasi = ({nav}) => {
         const now = new Date().getHours() + '.' + new Date().getMinutes();
         if (now <= el.start[i]) {
           PushNotification.localNotificationSchedule({
-            channelId: 'presentia',
+            channelId: 'presentiax',
             invokeApp: true,
             title: el.name[i],
             message: 'Jangan lupa absen ya!',

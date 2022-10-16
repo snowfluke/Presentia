@@ -13,13 +13,13 @@ async function requestUserPermission() {
 }
 
 const firebaseConfig = {
-  apiKey: 'AIzaSyB-QgRCpeIuu8yW5mbjOu-eP1kStiZSNGo',
-  authDomain: 'presentia-ca8ff.firebaseapp.com',
-  projectId: 'presentia-ca8ff',
-  storageBucket: 'presentia-ca8ff.appspot.com',
-  messagingSenderId: '751141696653',
-  appId: '1:751141696653:web:f03b3e430b929b26025ec4',
-  measurementId: 'G-DGLE98332P',
+  apiKey: process.env.FIREBASE_APIKEY,
+  authDomain: process.env.FIREBASE_AUTHDOMAIN,
+  projectId: process.env.FIREBASE_PROJECTID,
+  storageBucket: process.env.FIREBASE_STORAGEBUCKET,
+  messagingSenderId: process.env.FIREBASE_MESSAGINGSENDERID,
+  appId: process.env.FIREBASE_APPID,
+  measurementId: process.env.FIREBASE_MEASUREMENTID,
 };
 
 const init = async () => {

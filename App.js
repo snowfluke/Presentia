@@ -5,6 +5,7 @@ import {OnBoarding} from './src/components/intro/onBoarding';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import SplashScreen from 'react-native-splash-screen';
 
+
 export default function App() {
   const [loading, setLoading] = useState(true);
   const [viewedOnboarding, setViewedOnboarding] = useState(false);

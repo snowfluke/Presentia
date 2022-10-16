@@ -1,6 +1,8 @@
 /**
  * @format
  */
+import * as dotenv from 'dotenv';
+dotenv.config();
 
 import {AppRegistry} from 'react-native';
 import App from './App';
